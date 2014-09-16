@@ -1,0 +1,47 @@
+{
+  "name": "generator-dc-template",
+  "version": "0.0.5",
+  "description": "A template for DoubleClick HTML5 Ad",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "homepage": "https://github.com/leohxj/generator-dc-template",
+  "bugs": {
+    "url": "https://github.com/leohxj/generator-dc-template/issues"
+  },
+  "author": {
+    "name": "Leo Hui",
+    "email": "leohxj@gmail.com",
+    "url": "https://github.com/leohxj"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/leohxj/generator-dc-template.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.13.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0-rc.1"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "readme": "# generator-dc-template\n\nA generator for [Yeoman](http://yeoman.io).\n\n\n## Getting Started\n\n### What is Yeoman?\n\nTrick question. It's not a thing. It's this guy:\n\n![](http://i.imgur.com/JHaAlBJ.png)\n\nBasically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.\n\nNot every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*\n\n```\n$ npm install -g yo\n```\n\n### Yeoman Generators\n\nYeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.\n\nTo install generator-dc-template from npm, run:\n\n```\n$ npm install -g generator-dc-template\n```\n\nFinally, initiate the generator:\n\n```\n$ yo dc-template\n```\n\n### Getting To Know Yeoman\n\nYeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.\n\nIf you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).\n\n\n## License\n\n[MIT License](http://en.wikipedia.org/wiki/MIT_License)\n",
+  "readmeFilename": "README.md",
+  "_id": "generator-dc-template@0.0.5",
+  "_from": "generator-dc-template@"
+}

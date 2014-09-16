@@ -1,0 +1,90 @@
+/*============= Begin Reset CSS =============*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+}
+:focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+img {
+    display: block;
+}
+ul,ol,li {list-style: none;}
+body {
+    -webkit-backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    -o-backface-visibility:hidden;
+    backface-visibility:hidden;
+}
+/*============= END Reset CSS =============*/
+
+/*============= Base Frame =============*/
+#main-panel {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 300px;
+  height: 300px;
+}
+
+#collapsed-panel {
+  position: absolute;
+  left: 0px;
+  top: 250px;
+  width: 300px;
+  height: 50px;
+  z-index: 100;
+}
+
+#expanded-panel {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 300px;
+  height: 300px;
+  z-index: 200;
+  display: none;
+}
+
+#expand-button {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 400;
+}
+#collapse-button {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  background: url('e-closeBtn.png');
+  z-index: 600;
+}
+#expanded-background-exit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 400;
+}
+/*============= End Base Frame =============*/
