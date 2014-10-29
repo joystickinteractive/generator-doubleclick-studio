@@ -1,12 +1,12 @@
 {
   "name": "Banner",
-  "description": "HTML 5 Ad Template from DoubleClick by KoodooGroup",
+  "description": "HTML 5 Ad Template from DoubleClick by Joystick Interactive",
   "version": "0.0.1",
   "engines": {
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt qunit"
+    "test": "grunt serve"
   },
   "author": {
     "name": "Leo Hui",
