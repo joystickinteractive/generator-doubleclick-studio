@@ -1,145 +1,116 @@
-(function() {
-    console.log('It works!');
+/* variables */
+var container
+, bgExit
+;
 
-    //Declaring namespace
-    var bgExit,
-        timeLine = [];
 
-    // Check the Enabler
-    if (Enabler.isInitialized()) {
-        enablerInitHandler();
-    } else {
-        Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
-    }
+/* init */
+var init = function() {
+  bgExit = document.querySelectorAll('#bg-exit')[0];
+};
 
-    function enablerInitHandler() {
-        if (Enabler.isVisible()) {
-            adVisibilityHandler();
-        } else {
-            Enabler.addEventListener(studio.events.StudioEvent.VISIBLE,
-                adVisibilityHandler);
-        }
-    }
+/* handle evevents after init */
+var handleEvents = function() {
+  bgExit.addEventListener(evtClick, bgExitHandler, false);
+};
 
-    /**
-     * Init the Ad
-     */
+/* functions */
+var stopMedia = function() {
+  // stop all sounds, all videos
+};
 
-    function adVisibilityHandler() {
-        //Assign All the elements to the element on the page
-        bgExit = document.getElementById('bg-exit');
+var bgExitHandler = function() {
+  // stop all sounds, all videos
+  stopMedia();
+  Enabler.exit('Background Exit');
+};
 
-        //Bring in listeners
-        addListeners();
 
-        //Bring in tracking
-        addTracking();
 
-        // Start Animation
-        document.body.setAttribute('class', 'start');
-        startAnimation();
-    }
 
-    function addListeners() {
-        bgExit.addEventListener('click', bgExitHandler, false);
-    }
+/**
+ * Helper functions 
+ */
+// check if mobile
+var isMobile = {
+  Android: function() {
+    return navigator.userAgent.match(/Android/i) ? true : false;
+  },
+  BlackBerry: function() {
+    return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+  },
+  iOS: function() {
+    return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+  },
+  iPad: function() {
+    return navigator.userAgent.match(/iPad/i) ? true : false;
+  },
+  Windows: function() {
+    return navigator.userAgent.match(/IEMobile/i) ? true : false;
+  },
+  any: function() {
+    return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+  }
+};
+// check click events
+var evtOver;
+var evtClick;
+var evtMouseDown;
+var evtMouseUp;
+var evtMouseMove;
+var evtLeave;
+if (isMobile.any()) {
+  evtOver = 'touchstart';
+  evtClick = 'touchstart';
+  evtMouseDown = 'touchstart';
+  evtMouseUp = 'touchend';
+  evtMouseMove = 'touchmove';
+} else {
+  evtOver = 'mouseover';
+  evtLeave = 'mouseleave';
+  evtClick = 'click';
+  evtMouseDown = 'mousedown';
+  evtMouseUp = 'mouseup';
+  evtMouseMove = 'mousemove';
+}
 
-    function addTracking() {
 
-    }
+/**
+ * Waits for the page to load (and for the Enabler to be initialized) before
+ * proceeding to call enablerInitHandler().
+ */
+window.onload = function () {
+  if (Enabler.isInitialized()) {
+    enablerInitHandler();
+  } else {
+    Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+  }
 
-    function startAnimation() {
-        // for example
-        // timeLine.push(delaySetClass('logo-icon', 100, 'logo-in'));
-    }
+};
+var enablerInitHandler = function () {
+  // Add expansion listeners.
+  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, function(){
+    Enabler.finishExpand();
+  }, false);
+  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, function(){
+    expandFinish();
+    Enabler.counter('Lightbox Expand');
+  }, false);
+  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, function(){
+    Enabler.finishCollapse();
+  }, false);
+  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, function(){
+    collapseFinish();
+    Enabler.counter('Lightbox Collapse');
+  }, false);
 
-    function switchToEnd() {
-        var i = 0,
-            len = timeLine.length;
+  if (Enabler.isPageLoaded()) {
+    init();
+  } else {
+    Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, function() {
+      init();
+      handleEvents();
+    });
+  }
+};
 
-        for (; i < len; i++) {
-            clearTimeout(timeLine[i]);
-        };
-
-        document.body.setAttribute('class', 'end');
-    }
-
-    function bgExitHandler(e) {
-        Enabler.exit('Background Exit');
-        switchToEnd();
-    }
-
-    function delaySetClass(elementId, delayTime, classToAdd, classToRemove, callback) {
-        var element = document.getElementById(elementId);
-
-        if (element == null) {
-            console.log(elementId + 'does not exit!');
-            return;
-        }
-
-        var delayTimeout = setTimeout(function() {
-            var oldClassName = element.className,
-                newClassName = '';
-
-            if (typeof classToAdd == 'string') {
-                newClassName = oldClassName + ' ' + classToAdd;
-            } else if (Object.prototype.toString.call(classToAdd) === '[object Array]') {
-                newClassName = oldClassName + ' ' + classToAdd.join(' ');
-            }
-            element.className = newClassName;
-            oldClassName = newClassName;
-
-            if (typeof classToRemove == 'string') {
-                newClassName = oldClassName.replace(classToRemove, '').trim();
-            } else if (Object.prototype.toString.call(classToRemove) === '[object Array]') {
-                classToRemove.forEach(function(item) {
-                    oldClassName = oldClassName.replace(item, '');
-                });
-                newClassName = oldClassName.trim();
-            }
-
-            element.className = newClassName;
-
-            if (typeof callback == 'function') {
-                callback();
-            }
-        }, delayTime);
-
-        return delayTimeout;
-    }
-
-    /**
-     * 播放序列帧图片
-     * @param  {string} elementId         元素id
-     * @param  {number} playTime          播放时间/ms
-     * @param  {number} totalSpriteHeight 序列帧图片高度/px
-     * @param  {number} startFrame        播放开始帧数(0为空白帧)
-     * @param  {number} endFrame          播放结束帧数(总帧数+1为空白帧)
-     * @return {null}                   没有返回值
-     */
-
-    function playSpriteAni(elementId, playTime, totalSpriteHeight, startFrame, endFrame) {
-        var element = document.getElementById(elementId),
-            spriteHeight = element.clientHeight,
-            startFrame = (startFrame == 0) || startFrame ? startFrame : 1,
-            endFrame = endFrame ? endFrame : (totalSpriteHeight / spriteHeight),
-            playRate = playTime / (endFrame - startFrame);
-
-        var curFrame = startFrame;
-        var transY = -(startFrame - 1) * spriteHeight;
-        var endtransY = -(endFrame - 1) * spriteHeight;
-
-        var sprites = setInterval(function() {
-            curFrame++;
-            transY -= spriteHeight;
-
-            element.style.backgroundPosition = "0 " + transY + "px";
-
-            if (curFrame == endFrame || document.body.className == 'end') {
-                element.style.backgroundPosition = "0 " + endtransY + "px";
-                clearInterval(sprites);
-            }
-
-        }, playRate);
-    }
-})();
