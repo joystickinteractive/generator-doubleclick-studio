@@ -26,7 +26,7 @@ DctemplateGenerator.prototype.askFor = function askFor() {
     name: 'dcType',
     message: 'Which type do you want to create?(1.In-page, 2.Expanding)',
     default: 1
-  }, {
+  }/*, {
     type: 'confirm',
     name: 'zeptoOption',
     message: 'Would you like to enable zepto.js?',
@@ -41,7 +41,7 @@ DctemplateGenerator.prototype.askFor = function askFor() {
     name: 'timelineLiteOption',
     message: 'Would you like to enable TimelineLite.js?',
     default: false
-  }];
+  }*/];
 
   this.prompt(prompts, function (props) {
     this.dcType = props.dcType;

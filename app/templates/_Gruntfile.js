@@ -6,6 +6,28 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     banner: '',
+    // Watches files for changes and runs tasks based on the changed files
+    watch: {
+      js: {
+        files: ['dev/*.js'],
+        tasks: [],
+        options: {
+          livereload: '<' + '%= connect.options.livereload %>'
+        }
+      },
+      livereload: {
+        options: {
+          livereload: '<' + '%= connect.options.livereload %>'
+        },
+        files: [
+          'dev/*.html',
+          'dev/*.css',
+          'dev/*.js',
+          'dev/{,*/}*.{png,jpg,jpeg,gif,svg}'
+        ]
+      }
+    },
+
     // The actual grunt server settings
     connect: {
       options: {
@@ -24,25 +46,6 @@ module.exports = function(grunt) {
             ];
           }
         }
-      }
-    },
-    // Watches files for changes and runs tasks based on the changed files
-    watch: {
-      js: {
-        files: ['dev/*.js'],
-        tasks: ['newer:jshint:all'],
-        options: {
-          livereload: 'connect.options.livereload'
-        }
-      },
-      livereload: {
-        options: {
-          livereload: 'connect.options.livereload'
-        },
-        files: [
-          'dev/*.html',
-          'dev/{,*/}*.{png,jpg,jpeg,gif,svg}'
-        ]
       }
     },
     // Task configuration.

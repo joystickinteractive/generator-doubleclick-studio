@@ -6,7 +6,10 @@ var container
 
 /* init */
 var init = function() {
+  container = document.querySelectorAll('#container')[0];
   bgExit = document.querySelectorAll('#bg-exit')[0];
+
+  container.style.visibility = 'visible';
 };
 
 /* handle evevents after init */
