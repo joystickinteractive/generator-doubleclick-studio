@@ -1,32 +1,29 @@
-<!-- HTML 5 Ad Template from DoubleClick by KoodooGroup -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Document Title</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="main-panel">
-            <!-- Collapsed Conent -->
-            <div id="collapsed-panel">
-                <div id="expand-button">
-                </div>
-                <!-- Start Your Ad for Collapse -->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <!-- Studio Enabler Required -->
+  <script src="//s0.2mdn.net/ads/studio/Enabler.js" type="text/javascript"></script>
+  <%= tweenLiteOption ? '<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>' : '' %>
+  <script src="app.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="main-panel">
+  <!-- Collapsed Conent -->
+  <div id="collapsed-panel">
+    <button id="expand-button"></button>
+    <!-- Start Your Ad for Collapse -->
 
-            </div>
-            <!-- Expand Content -->
-            <div id="expanded-panel">
-                <div id="collapse-button">
-                </div>
-                <div id="expanded-background-exit">
-                </div>
-                <!-- Start Your Ad for Expand -->
+  </div>
 
-            </div>
-        </div>
-        <!-- Studio Enabler Required -->
-        <script src="http://s0.2mdn.net/ads/studio/Enabler.js" type="text/javascript"></script>
-        <script type="text/javascript" src="app.js"> </script>
-    </body>
+  <!-- Expand Content -->
+  <div id="expanded-panel">
+    <div id="collapse-button"></div>
+    <button id="expanded-background-exit"></button>
+    <!-- Start Your Ad for Expand -->
+
+  </div>
+</div>
+</body>
 </html>

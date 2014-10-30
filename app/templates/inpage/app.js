@@ -91,22 +91,6 @@ window.onload = function () {
 
 };
 var enablerInitHandler = function () {
-  // Add expansion listeners.
-  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, function(){
-    Enabler.finishExpand();
-  }, false);
-  Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, function(){
-    expandFinish();
-    Enabler.counter('Lightbox Expand');
-  }, false);
-  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, function(){
-    Enabler.finishCollapse();
-  }, false);
-  Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, function(){
-    collapseFinish();
-    Enabler.counter('Lightbox Collapse');
-  }, false);
-
   if (Enabler.isPageLoaded()) {
     init();
   } else {

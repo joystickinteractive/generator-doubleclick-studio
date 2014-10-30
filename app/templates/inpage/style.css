@@ -40,8 +40,8 @@ body {
 #container {
   visibility: hidden;
   position: absolute;
-  width: 298px;
-  height: 248px;
+  width: <%=unitWidth-2%>px;
+  height: <%=unitHeight-2%>px;
   border: 1px solid #000;
   overflow: hidden;
 }

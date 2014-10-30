@@ -23,10 +23,43 @@ DctemplateGenerator.prototype.askFor = function askFor() {
   console.log(this.yeoman);
 
   var prompts = [{
+    type: 'list',
     name: 'dcType',
-    message: 'Which type do you want to create?(1.In-page, 2.Expanding)',
-    default: 1
-  }/*, {
+    message: 'Which type do you want to create?',
+    choices: [
+      { key: "1", name: "In-page", value: "inpage" },
+      { key: "2", name: "Expanding", value: "expanding" }
+    ],
+    default: 0
+  }, {
+    name: 'unitWidth',
+    message: 'Width?',
+    default: 320
+  }, {
+    name: 'unitHeight',
+    message: 'Height?',
+    default: 250
+  }, {
+    name: 'expandingWidth',
+    message: 'Expanding width?',
+    default: 600,
+    when: function(props) {
+      return props.dcType === 'expanding';
+    }
+  }, {
+    name: 'expandingHeight',
+    message: 'Expanding height?',
+    default: 250,
+    when: function(props) {
+      return props.dcType === 'expanding';
+    }
+  }, {
+    type: 'confirm',
+    name: 'tweenLiteOption',
+    message: 'Would you like to enable TweenLite.js?',
+    default: false
+  }, 
+  /*, {
     type: 'confirm',
     name: 'zeptoOption',
     message: 'Would you like to enable zepto.js?',
@@ -45,13 +78,18 @@ DctemplateGenerator.prototype.askFor = function askFor() {
 
   this.prompt(prompts, function (props) {
     this.dcType = props.dcType;
-    this.zeptoOption = props.zeptoOption;
+    this.unitWidth = props.unitWidth;
+    this.unitHeight = props.unitHeight;
+    this.expandingWidth = props.expandingWidth;
+    this.expandingHeight = props.expandingHeight;
+    // this.zeptoOption = props.zeptoOption;
     this.tweenLiteOption = props.tweenLiteOption;
-    this.timelineLiteOption = props.timelineLiteOption;
+    // this.timelineLiteOption = props.timelineLiteOption;
 
     cb();
   }.bind(this));
 };
+
 
 DctemplateGenerator.prototype.app = function app() {
   this.template('_README.md', 'README.md');
@@ -67,17 +105,17 @@ DctemplateGenerator.prototype.projectfiles = function projectfiles() {
 };
 
 DctemplateGenerator.prototype.inPage = function inPage() {
-  if (this.dcType == 1) {
+  if (this.dcType == 'inpage') {
     this.directory('inpage/', 'dev/');
   }
 };
 DctemplateGenerator.prototype.expanding = function expanding() {
-  if (this.dcType == 2) {
+  if (this.dcType == 'expanding') {
     this.directory('expanding/', 'dev/');
   }
 };
 
-DctemplateGenerator.prototype.zepto = function zepto() {
+/*DctemplateGenerator.prototype.zepto = function zepto() {
   if (this.zeptoOption) {
     this.template('vendor/zepto.js', 'dev/zepto.js');
   }
@@ -89,4 +127,4 @@ DctemplateGenerator.prototype.gsap = function gsap() {
   if (this.timelineLiteOption) {
     this.template('vendor/TimelineLite.js', 'dev/TimelineLite.js');
   }
-};
+};*/
