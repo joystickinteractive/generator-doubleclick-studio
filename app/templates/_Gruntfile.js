@@ -48,6 +48,25 @@ module.exports = function(grunt) {
         }
       }
     },
+
+    uglify: {
+      core: {
+        options: {
+          mangle: false
+        },
+        files: {
+          'pub/app.js': ['dev/*.js']
+        }
+      }
+    },
+    cssmin: {
+      core: {
+        files: {
+          'pub/style.css': ['dev/*.css']
+        }
+      }
+    },
+
     // Task configuration.
     clean: {
       dist: {
@@ -91,10 +110,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task.
   grunt.registerTask('default', ['clean', 'copy', 'concat', 'imagemin']);
-  grunt.registerTask('build', ['clean', 'copy', 'concat', 'imagemin']);
+  grunt.registerTask('build', ['clean', 'copy', 'cssmin', 'uglify', 'imagemin']);
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
