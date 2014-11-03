@@ -6,7 +6,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt serve"
+    "test": "grunt qunit"
   },
   "author": {
     "name": "Joystick Interactive",
