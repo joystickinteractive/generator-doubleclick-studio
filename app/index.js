@@ -27,14 +27,15 @@ DctemplateGenerator.prototype.askFor = function askFor() {
     name: 'dcType',
     message: 'Which type do you want to create?',
     choices: [
-      { key: "1", name: "In-page", value: "inpage" },
-      { key: "2", name: "Expanding", value: "expanding" }
+      { key: "1", name: "1. In-page", value: "inpage" },
+      { key: "2", name: "2. Expanding", value: "expanding" },
+      { key: "3", name: "3. Lightbox", value: "lightbox" },
     ],
     default: 0
   }, {
     name: 'unitWidth',
     message: 'Width?',
-    default: 320
+    default: 300
   }, {
     name: 'unitHeight',
     message: 'Height?',
@@ -44,14 +45,14 @@ DctemplateGenerator.prototype.askFor = function askFor() {
     message: 'Expanding width?',
     default: 600,
     when: function(props) {
-      return props.dcType === 'expanding';
+      return props.dcType === 'expanding' || props.dcType === 'lightbox';
     }
   }, {
     name: 'expandingHeight',
     message: 'Expanding height?',
     default: 250,
     when: function(props) {
-      return props.dcType === 'expanding';
+      return props.dcType === 'expanding' || props.dcType === 'lightbox';
     }
   }, {
     type: 'confirm',
@@ -112,6 +113,11 @@ DctemplateGenerator.prototype.inPage = function inPage() {
 DctemplateGenerator.prototype.expanding = function expanding() {
   if (this.dcType == 'expanding') {
     this.directory('expanding/', 'dev/');
+  }
+};
+DctemplateGenerator.prototype.lightbox = function lightbox() {
+  if (this.dcType == 'lightbox') {
+    this.directory('lightbox/', 'dev/');
   }
 };
 
