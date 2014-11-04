@@ -25,17 +25,20 @@ var init = function() {
 /* handle evevents after init */
 var handleEvents = function() {
   expandedBackgroundExit.addEventListener(evtClick, bgExitHandler, false);
+  expandButton.addEventListener(evtClick, expandHandler, false);
 };
 
 /* functions */
 var stopMedia = function() {
   // stop all sounds, all videos
 };
-
 var bgExitHandler = function() {
   // stop all sounds, all videos
   stopMedia();
   Enabler.exit('Background Exit');
+};
+var expandHandler = function() {
+  Enabler.requestExpand();
 };
 // render collapse view
 var collapseFinish = function() {
