@@ -1,40 +1,42 @@
 /* variables */
-var mainPanel
-, collapsedPanel
-, expandPanel
-, expandButton
-, collapseButton
-, expandedBackgroundExit
+var main_panel
+, collapsed_panel
+, expanded_panel
+, expand_button
+, expanded_background_exit
 ;
 
 
 /* init */
 var init = function() {
-  mainPanel = document.querySelectorAll('#main-panel')[0];
-  collapsedPanel = document.querySelectorAll('#collapsed-panel')[0];
-  expandPanel = document.querySelectorAll('#expand-panel')[0];
-  expandButton = document.querySelectorAll('#expand-button')[0];
-  collapseButton = document.querySelectorAll('#collapse-button')[0];
-  expandedBackgroundExit = document.querySelectorAll('#expanded-background-exit')[0];
+  main_panel = document.querySelectorAll('.main_panel')[0];
+  collapsed_panel = document.querySelectorAll('.collapsed_panel')[0];
+  expanded_panel = document.querySelectorAll('.expanded_panel')[0];
+  expand_button = document.querySelectorAll('.expand_button')[0];
+  expanded_background_exit = document.querySelectorAll('expanded_background_exit')[0];
 
-  mainPanel.style.visibility = 'visible';
-  collapsedPanel.style.display = 'block';
-  expandPanel.style.display = 'none';
+  main_panel.style.visibility = 'visible';
+  collapsed_panel.style.display = 'block';
+  expanded_panel.style.display = 'none';
 };
 
 /* handle evevents after init */
 var handleEvents = function() {
-  expandedBackgroundExit.addEventListener(evtClick, bgExitHandler, false);
-  expandButton.addEventListener(evtClick, expandHandler, false);
+  expanded_background_exit.addEventListener(evtClick, bgExitHandler, false);
+  expand_button.addEventListener(evtClick, expandHandler, false);
 };
 
 /* functions */
 var stopMedia = function() {
   // stop all sounds, all videos
 };
-var bgExitHandler = function() {
-  // stop all sounds, all videos
+var adExit = function() {
+  // on ad exit, stop all sounds
+  // and collapse
   stopMedia();
+  Enabler.requestCollapse();
+};
+var bgExitHandler = function() {
   Enabler.exit('Background Exit');
 };
 var expandHandler = function() {
@@ -42,15 +44,15 @@ var expandHandler = function() {
 };
 // render collapse view
 var collapseFinish = function() {
-  // stop all sounds, all videos
+  // on collapse stop all sounds
   stopMedia();
-  collapsedPanel.style.display = 'block';
-  expandPanel.style.display = 'none';
+  collapsed_panel.style.display = 'block';
+  expanded_panel.style.display = 'none';
 }
 // render expand view
 var expandFinish = function() {
-  collapsedPanel.style.display = 'none';
-  expandPanel.style.display = 'block';
+  collapsed_panel.style.display = 'none';
+  expanded_panel.style.display = 'block';
 }
 
 
@@ -125,16 +127,22 @@ var enablerInitHandler = function () {
   }, false);
   Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, function(){
     expandFinish();
+    Enabler.counter('Lightbox Expand');
   }, false);
   Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, function(){
     Enabler.finishCollapse();
   }, false);
   Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, function(){
     collapseFinish();
+    Enabler.counter('Lightbox Collapse');
+  }, false);
+  Enabler.addEventListener(studio.events.StudioEvent.EXIT, function(){
+    adExit();
   }, false);
 
   if (Enabler.isPageLoaded()) {
     init();
+    handleEvents();
   } else {
     Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, function() {
       init();

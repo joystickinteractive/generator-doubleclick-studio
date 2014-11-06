@@ -1,30 +1,32 @@
 /* variables */
 var container
-, bgExit
+, bg_exit
 ;
 
 
 /* init */
 var init = function() {
-  container = document.querySelectorAll('#container')[0];
-  bgExit = document.querySelectorAll('#bg-exit')[0];
+  container = document.querySelectorAll('.container')[0];
+  bg_exit = document.querySelectorAll('.bg_exit')[0];
 
   container.style.visibility = 'visible';
 };
 
 /* handle evevents after init */
 var handleEvents = function() {
-  bgExit.addEventListener(evtClick, bgExitHandler, false);
+  bg_exit.addEventListener(evtClick, bgExitHandler, false);
 };
 
+/* functions */
 /* functions */
 var stopMedia = function() {
   // stop all sounds, all videos
 };
-
-var bgExitHandler = function() {
-  // stop all sounds, all videos
+var adExit = function() {
+  // on ad exit, stop all sounds
   stopMedia();
+};
+var bgExitHandler = function() {
   Enabler.exit('Background Exit');
 };
 
@@ -91,8 +93,13 @@ window.onload = function () {
 
 };
 var enablerInitHandler = function () {
+  Enabler.addEventListener(studio.events.StudioEvent.EXIT, function(){
+    adExit();
+  }, false);
+
   if (Enabler.isPageLoaded()) {
     init();
+    handleEvents();
   } else {
     Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, function() {
       init();
