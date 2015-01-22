@@ -13,7 +13,7 @@ var init = function() {
   collapsed_panel = document.querySelectorAll('.collapsed_panel')[0];
   expanded_panel = document.querySelectorAll('.expanded_panel')[0];
   expand_button = document.querySelectorAll('.expand_button')[0];
-  expanded_background_exit = document.querySelectorAll('expanded_background_exit')[0];
+  expanded_background_exit = document.querySelectorAll('.expanded_background_exit')[0];
 
   main_panel.style.visibility = 'visible';
   collapsed_panel.style.display = 'block';
