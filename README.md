@@ -29,6 +29,12 @@ To install generator-dc-template from npm, run:
 $ npm install -g generator-dc-template
 ```
 
+Because we are using private repository, the above command won't work. The work around is this:
+
+```
+$ npm install /your/folder_path/to/generator-dc-template
+```
+
 Finally, initiate the generator:
 
 ```
