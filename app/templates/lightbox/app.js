@@ -1,3 +1,7 @@
+/* NOTE: 
+* display properties z-index 9000 
+* expanding type
+*/
 /* variables */
 var main_panel
 , collapsed_panel
