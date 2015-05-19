@@ -10,8 +10,8 @@
     "url": "https://github.com/joystickinteractive/generator-doubleclick-studio"
   },
   "author": {
-    "name": "Randy Loffelmacher",
-    "email": "randy@joystickinteractive.com",
+    "name": "Mykhel Trinitaria",
+    "email": "mykhel@joystickinteractive.com",
     "url": "https://github.com/joystickinteractive"
   },
   "main": "app/index.js",
