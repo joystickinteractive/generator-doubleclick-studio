@@ -1,6 +1,6 @@
-# generator-dc-template
+# generator-doublelclick-studio
 
-A generator for [Yeoman](http://yeoman.io).
+A generator for [Yeoman](http://yeoman.io) which scaffolds a Doubleclick Studio HTML5 Ad
 
 
 ## Getting Started
@@ -26,19 +26,19 @@ Yeoman travels light. He didn't pack any generators when he moved in. You can th
 To install generator-dc-template from npm, run:
 
 ```
-$ npm install -g generator-dc-template
+$ npm install -g generator-doubleclick-studio
 ```
 
 Because we are using private repository, the above command won't work. The work around is this:
 
 ```
-$ npm install /your/folder_path/to/generator-dc-template
+$ npm install /your/folder_path/to/generator-doubleclick-studio
 ```
 
 Finally, initiate the generator:
 
 ```
-$ yo dc-template
+$ yo doubleclick-studio
 ```
 
 After entering the above command line, it will ask with these few questions:
