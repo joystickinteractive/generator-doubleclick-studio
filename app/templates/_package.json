@@ -27,6 +27,9 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-watch": "*",
-    "grunt-contrib-connect": "*"
+    "grunt-contrib-connect": "*",
+    "grunt-contrib-htmlmin": "*",
+    "grunt-usemin": "*",
+    "grunt-spritesmith": "*"
   }
 }

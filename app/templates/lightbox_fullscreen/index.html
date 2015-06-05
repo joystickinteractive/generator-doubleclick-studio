@@ -7,7 +7,14 @@
   <%= tweenLiteOption ? '<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>' : '' %>
   <script type="text/javascript">
 function setPixelOffset() {
-  Enabler.setExpandingPixelOffsets(0, 0, <%=expandingWidth%>, <%=expandingHeight%>, false, false);
+  var CREATIVE_CONTAINER = 'studioV2.api.creatives[0].getAssets()[0].getContainerElement()';
+
+  Enabler.addEventListener(studio.events.StudioEvent.FULLSCREEN_SUPPORT, fsSupportHandler);
+
+  function fsSupportHandler() {
+      Enabler.invokeExternalJsFunction(CREATIVE_CONTAINER + '.style.zIndex=9000');
+      Enabler.invokeExternalJsFunction( CREATIVE_CONTAINER + '.children[0].style.overflow =\'visible\'');
+  }
   Enabler.setHint('expansionMode', 'lightbox');
 }
   </script>
