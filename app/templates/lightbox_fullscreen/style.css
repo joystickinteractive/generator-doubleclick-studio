@@ -61,8 +61,8 @@ body {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: calc(100% - 2);
-  height: calc(100% - 2);
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
   z-index: 200;
   display: none;
   border: 1px solid #000;
