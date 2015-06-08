@@ -30,6 +30,7 @@ DctemplateGenerator.prototype.askFor = function askFor() {
       { key: "1", name: "1. In-page", value: "inpage" },
       { key: "2", name: "2. Expanding", value: "expanding" },
       { key: "3", name: "3. Lightbox", value: "lightbox" },
+      { key: "4", name: "4. Lightbox Fullscreen", value: "lightbox_fullscreen" }
     ],
     default: 0
   }, {

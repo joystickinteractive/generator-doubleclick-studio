@@ -1,4 +1,4 @@
-# generator-doublelclick-studio
+# generator-doubleclick-studio
 
 A generator for [Yeoman](http://yeoman.io) which scaffolds a Doubleclick Studio HTML5 Ad
 
