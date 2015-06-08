@@ -121,6 +121,11 @@ DctemplateGenerator.prototype.lightbox = function lightbox() {
     this.directory('lightbox/', 'dev/');
   }
 };
+DctemplateGenerator.prototype.lightbox_fullscreen = function lightbox_fullscreen() {
+  if (this.dcType == 'lightbox_fullscreen') {
+    this.directory('lightbox_fullscreen/', 'dev/');
+  }
+};
 
 /*DctemplateGenerator.prototype.zepto = function zepto() {
   if (this.zeptoOption) {
