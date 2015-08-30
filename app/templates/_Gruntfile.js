@@ -8,50 +8,33 @@ module.exports = function(grunt) {
     banner: '',
     // Watches files for changes and runs tasks based on the changed files
     watch: {
-      js: {
-        files: ['dev/*.js'],
-        tasks: [],
-        options: {
-          livereload: '<' + '%= connect.options.livereload %>'
-        }
-      },
-      image: {
-        files: ['dev/sprites/*.png'],
-        tasks: ['sprite'],
-        options: {
-          livereload: '<' + '%= connect.options.livereload %>'
-        }
-      },
-      livereload: {
-        options: {
-          livereload: '<' + '%= connect.options.livereload %>'
-        },
+      all: {
+        options: { livereload: true },
         files: [
           'dev/*.html',
           'dev/*.css',
           'dev/*.js',
           'dev/{,*/}*.{png,jpg,jpeg,gif,svg}'
-        ]
+        ],
+        tasks: [],
+      },
+      image: {
+        files: ['dev/sprites/*.png'],
+        tasks: ['sprite'],
+        options: { livereload: true }
       }
     },
 
     // The actual grunt server settings
     connect: {
-      options: {
-        port: 9000,
-        // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
-        livereload: 35729
-      },
-      livereload: {
+      server: {
         options: {
-          open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('dev')
-            ];
-          }
+          port: 9000,
+          // Change this to '0.0.0.0' to access the server from outside.
+          hostname: 'localhost',
+          livereload: true,
+          base: ['.tmp', 'dev'],
+          open: true
         }
       }
     },
