@@ -130,7 +130,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: 'dev/',
-          src: ['**', '!sprites/**'],
+          src: ['**', '!sprites/**', '!sprites.css'],
           dest: 'pub/'
         }]
       }
@@ -175,6 +175,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.task.run(['clean', 'sprite', 'connect:livereload', 'watch']);
+    grunt.task.run(['clean', 'sprite', 'connect', 'watch']);
   });
 };

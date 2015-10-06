@@ -159,5 +159,10 @@ var enablerInitHandler = function () {
       handleEvents();
     });
   }
+
+  // to avoid scroll when on mobile
+  document.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+  });
 };
 
